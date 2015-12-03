@@ -33,6 +33,11 @@
   when: elk_logstash.patterns is defined
   notify: Restart logstash
 
+- name: Install logstash-input-beats
+  command: /opt/logstash/bin/plugin install logstash-input-beats
+  sudo: yes
+  notify: Restart logstash
+
 - name: Make monit to look after Logstash
   template:
     src=logstash.monitrc.conf.j2
